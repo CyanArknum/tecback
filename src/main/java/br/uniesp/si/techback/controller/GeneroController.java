@@ -1,14 +1,36 @@
 package br.uniesp.si.techback.controller;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import br.uniesp.si.techback.model.Genero;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/generos")
 public class GeneroController {
+
+    private static List<Genero> lista = new ArrayList<>();
+
     @PostMapping
-    public String criar(){
-        return"Post Criação de Genero exec";
+    public Genero criar(Genero genero){
+        lista.add(genero);
+        return genero;
+    }
+
+    @GetMapping
+    public List<Genero> listar(){
+        return lista;
+    }
+
+    @PutMapping
+    public String atualizar(){
+        return "Atualizar";
+    }
+
+    @DeleteMapping
+    public String deletar(){
+        return "deletar";
     }
 }
